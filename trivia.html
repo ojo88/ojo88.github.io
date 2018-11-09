@@ -28,8 +28,28 @@
 
                 var triviaList = $("#triviaList");
 
+
                 $.getJSON(newUrl, function( data ){
-                    triviaList.append('<li>' + data.results[0].question + '</li>')
+
+                    function correct() {
+                        return triviaList.append('<li>' + data.results[0].correct_answer + '</li>');
+                    }
+                    function incorrectOne() {
+                        return triviaList.append('<li>' + data.results[0].incorrect_answers[0] + '</li>');                        
+                    }
+                    function incorrectTwo() {
+                        return triviaList.append('<li>' + data.results[0].incorrect_answers[1] + '</li>');                        
+                    }
+                    function incorrectThree() {
+                        return triviaList.append('<li>' + data.results[0].incorrect_answers[2] + '</li>');                        
+                    }                                       
+                    triviaList.append('<li> <h4>' + data.results[0].question + '</h4><br></li>');
+
+                    correct();
+                    incorrectOne();
+                    incorrectTwo();
+                    incorrectThree();
+
                 });
             }
 
@@ -136,14 +156,14 @@
 
                                 <br>
                                 <br>
-                                <ul>
-                                    <li>
+                                <!-- <ul>
+                                    <li> -->
                                         <input type="button" value="New Question" onclick="getQuestion()">
-                                    </li>
-                                </ul>
+                                    <!-- </li>
+                                </ul> -->
                                 
-                                <ol id="triviaList">
-                                </ol>
+                                <ul id="triviaList">
+                                </ul>
 
                                 <p>
                                     Come back next week for the answers and don't use any outsides sources besides brain lol.
