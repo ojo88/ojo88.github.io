@@ -16,8 +16,11 @@
             // Each trivia category has a numeric value
             // Want to see if I can change the category to
             // generate a new question.
+            function right() {
 
-             
+                $("#corr").css('color', 'green');
+            }
+
             function getQuestion(){
                 var categoryNum = Math.floor(Math.random()*32);
                 // The category number is between 9 and 32
@@ -30,18 +33,25 @@
 
 
                 $.getJSON(newUrl, function( data ){
-
+                    triviaList.html("");
                     function correct() {
-                        return triviaList.append('<li>' + data.results[0].correct_answer + '</li>');
+                        return triviaList.append('<li id="corr"><input type="button" onclick="right()"> ' + data.results[0].correct_answer + '</li>');
                     }
                     function incorrectOne() {
-                        return triviaList.append('<li>' + data.results[0].incorrect_answers[0] + '</li>');                        
+                        return triviaList.append('<li><input type="button"> ' + data.results[0].incorrect_answers[0] + '</li>');                        
                     }
                     function incorrectTwo() {
-                        return triviaList.append('<li>' + data.results[0].incorrect_answers[1] + '</li>');                        
+                        
+                        if(typeof data.results[0].incorrect_answers[1] != 'undefined')
+                        {
+                            return triviaList.append('<li><input type="button"> ' + data.results[0].incorrect_answers[1] + '</li>'); 
+                        }                       
                     }
                     function incorrectThree() {
-                        return triviaList.append('<li>' + data.results[0].incorrect_answers[2] + '</li>');                        
+                        if(typeof data.results[0].incorrect_answers[2] != 'undefined')
+                        {
+                            return triviaList.append('<li><input type="button"> ' + data.results[0].incorrect_answers[2] + '</li>');   
+                        }                     
                     }                                       
                     triviaList.append('<li> <h4>' + data.results[0].question + '</h4><br></li>');
 
@@ -49,6 +59,8 @@
                     incorrectOne();
                     incorrectTwo();
                     incorrectThree();
+
+
 
                 });
             }
@@ -162,12 +174,8 @@
                                     <!-- </li>
                                 </ul> -->
                                 
-                                <ul id="triviaList">
+                                <ul class="trivs" id="triviaList">
                                 </ul>
-
-                                <p>
-                                    Come back next week for the answers and don't use any outsides sources besides brain lol.
-                                </p>
                                 
                                 <br>
                                 <br>

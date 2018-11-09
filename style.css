@@ -98,3 +98,6 @@ a.navbar-brand {
  
   }
 
+  ul.trivs {
+    list-style-type: none;
+  }
