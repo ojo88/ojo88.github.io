@@ -21,6 +21,16 @@
                 $("#corr").css('color', 'green');
             }
 
+            function wrong1() {
+                $("#wrong1").css('color', 'red');
+            }
+            function wrong2() {
+                $("#wrong2").css('color', 'red');
+            }
+            function wrong3() {
+                $("#wrong3").css('color', 'red');
+            }
+
             function getQuestion(){
                 var categoryNum = Math.floor(Math.random()*32);
                 // The category number is between 9 and 32
@@ -38,19 +48,19 @@
                         return triviaList.append('<li id="corr"><input type="button" onclick="right()"> ' + data.results[0].correct_answer + '</li>');
                     }
                     function incorrectOne() {
-                        return triviaList.append('<li><input type="button"> ' + data.results[0].incorrect_answers[0] + '</li>');                        
+                        return triviaList.append('<li id="wrong1"><input type="button" onclick="wrong1()"> ' + data.results[0].incorrect_answers[0] + '</li>');                        
                     }
                     function incorrectTwo() {
                         
                         if(typeof data.results[0].incorrect_answers[1] != 'undefined')
                         {
-                            return triviaList.append('<li><input type="button"> ' + data.results[0].incorrect_answers[1] + '</li>'); 
+                            return triviaList.append('<li id="wrong2"><input type="button" onclick="wrong2()"> ' + data.results[0].incorrect_answers[1] + '</li>'); 
                         }                       
                     }
                     function incorrectThree() {
                         if(typeof data.results[0].incorrect_answers[2] != 'undefined')
                         {
-                            return triviaList.append('<li><input type="button"> ' + data.results[0].incorrect_answers[2] + '</li>');   
+                            return triviaList.append('<li id="wrong3"><input type="button" onclick="wrong3()"> ' + data.results[0].incorrect_answers[2] + '</li>');   
                         }                     
                     }                                       
                     triviaList.append('<li> <h4>' + data.results[0].question + '</h4><br></li>');
