@@ -64,11 +64,36 @@
                         }                     
                     }                                       
                     triviaList.append('<li> <h4>' + data.results[0].question + '</h4><br></li>');
+                    
+                    var scramble = Math.floor(Math.random()*4);
+                    if( scramble == 4)
+                    {
+                        correct();
+                        incorrectOne();
+                        incorrectTwo();
+                        incorrectThree();
+                    }
+                    else if(scramble == 3)
+                    {
+                        incorrectOne();
+                        correct();
+                        incorrectTwo();
+                        incorrectThree();                       
+                    }
+                    else if(scramble ==2)
+                    {
+                        incorrectOne();
+                        incorrectTwo();
+                        correct();
+                        incorrectThree();
+                    }
+                    else {
+                        incorrectOne();
+                        incorrectTwo();
+                        incorrectThree();
+                        correct();
+                    }
 
-                    correct();
-                    incorrectOne();
-                    incorrectTwo();
-                    incorrectThree();
 
 
 
