@@ -17,9 +17,20 @@
             // Want to see if I can change the category to
             // generate a new question.
 
-            var 
+             
             function getQuestion(){
+                var categoryNum = Math.floor(Math.random()*32);
+                // The category number is between 9 and 32
+                if(categoryNum < 9) {
+                    categoryNum = categoryNum + 9;
+                }
                 var newUrl = url + '&category=' + categoryNum;
+
+                var triviaList = $("#triviaList");
+
+                $.getJSON(newUrl, function( data ){
+                    triviaList.append('<li>' + data.results[0].question + '</li>')
+                });
             }
 
         </script>
@@ -127,32 +138,11 @@
                                 <br>
                                 <ul>
                                     <li>
-                                        <input type="button" value="New Question">
+                                        <input type="button" value="New Question" onclick="getQuestion()">
                                     </li>
                                 </ul>
-                                    <ol>
-                                    <li>
-                                        What 2014 Christopher Nolan film is currently rated a 71% on Rotten tomatoes?
-                    
-                                    </li>
-                                    <br>
-                                    <li>
-                                        How many throwing events are there in the Olympics?
-                                    </li>
-                                    <br>
-                                    <li>
-                                        How many countries border the Bay of Biscay?
-                                    </li>
-                                    <br>
-                                    <li>
-                                        What is the stage name for the actor Eric Bishop?
-                                    </li>
-                                    <br>
-                                    <li>
-                                        What movie scored Martin Scorsese wins for Best Director and Best Picture?
-                                    </li>
-                                    <br>
-                                    <br>
+                                
+                                <ol id="triviaList">
                                 </ol>
 
                                 <p>
